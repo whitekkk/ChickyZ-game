@@ -11,7 +11,7 @@ app.use(function (req, res, next) {
 })
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(express.static('/client/dist'))
+app.use(express.static('client/dist'))
 
 function makeId () {
   var text = ''
