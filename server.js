@@ -15,8 +15,8 @@ app.use(express.static('./client/dist'))
 
 function makeId()
 {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var text = '';
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
     for( var i=0; i < 20; i++ )
         text += possible.charAt(Math.floor(Math.random() * possible.length));
@@ -55,9 +55,9 @@ io.on('connection', function(socket) {
               color: avatars[i].color = eatFood.color,
               score: avatars[i].score = Math.ceil(avatars[i].score / 2)
             }
-            io.emit("update",update)
+            io.emit('update',update)
             foods.splice(foods.findIndex(food => food.id === eatFood.id), 1)
-            io.emit("removeFoods",eatFood.id)
+            io.emit('removeFoods',eatFood.id)
           } else {
             avatars[i].score += 2
             var update = {
@@ -65,9 +65,9 @@ io.on('connection', function(socket) {
               color: avatars[i].color,
               score: avatars[i].score
             }
-            io.emit("update",update)
+            io.emit('update',update)
             foods.splice(foods.findIndex(food => food.id === eatFood.id), 1)
-            io.emit("removeFoods",eatFood.id)
+            io.emit('removeFoods',eatFood.id)
           }
         }
       }
@@ -98,64 +98,61 @@ io.on('connection', function(socket) {
         y: Math.floor(Math.random() * 2778) + 50
       }
       foods.push(newFood)
-      io.emit("updateFoods",newFood)
+      io.emit('updateFoods',newFood)
     }
     length = foods.length
     for (var i = 0; i < avatars.length; i++) {
       if ((avatars[i].time + 120000) < n) {
-        io.emit("remove",avatars[i].id)
+        io.emit('remove',avatars[i].id)
         avatars.splice(i, 1)
       }
     }
-    d = new Date();
-    n = d.getTime();
+    d = new Date()
+    n = d.getTime()
   }, 1000)
 
-    socket.on('getFoods', function(data) {
-      socket.emit("getFoods",foods)
-    });
-    socket.on('get', function(data) {
-      // console.log(avatars)
-      socket.emit("get",avatars)
-    });
-    socket.on('new', function(data) {
-      var newJson = {}
-      var id = makeId()
-      data.id = id
-      newJson = data
-      avatars.push(data)
-      io.emit("new",newJson)
-    });
-    socket.on('remove', function(data) {
-      if (data !== '') {
-        avatars.splice(avatars.findIndex(avatar => avatar.id === data), 1)
-        io.emit("remove",data)
-      }
-    });
-    socket.on('update', function(data) {
-      var index = avatars.findIndex(avatar => avatar.id === data.id)
-      if (index !== -1) {
-        for (var j in data) {
-          if (j !== 'id') {
-            if (avatars[index]) {
-              avatars[index][j] = data[j]
-            }
+  socket.on('getFoods', function (data) {
+    socket.emit('getFoods', foods)
+  })
+  socket.on('get', function (data) {
+    // console.log(avatars)
+    socket.emit('get', avatars)
+  })
+  socket.on('new', function (data) {
+    var newJson = {}
+    var id = makeId()
+    data.id = id
+    newJson = data
+    avatars.push(data)
+    io.emit('new', newJson)
+  })
+  socket.on('remove', function (data) {
+    if (data !== '') {
+      avatars.splice(avatars.findIndex(avatar => avatar.id === data), 1)
+      io.emit('remove', data)
+    }
+  })
+  socket.on('update', function (data) {
+    var index = avatars.findIndex(avatar => avatar.id === data.id)
+    if (index !== -1) {
+      for (var j in data) {
+        if (j !== 'id') {
+          if (avatars[index]) {
+            avatars[index][j] = data[j]
           }
         }
-        if (avatars[index]) {
-          avatars[index].time = n
-        }
       }
-      io.emit("update",data)
-    });
-});
+      if (avatars[index]) {
+        avatars[index].time = n
+      }
+    }
+    io.emit('update', data)
+  })
+})
 
 // app.set('port', (process.env.PORT || 3001))
-// app.listen(app.get('port'), function () {
-//   console.log('Node app is running on port', app.get('port'))
-// })
 
 app.set('port', (process.env.PORT || 3001))
 server.listen(app.get('port'), function () {
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-});
+  console.log('Express server listening on port %d in %s mode', this.address().port, app.settings.env);
+})
