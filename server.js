@@ -150,11 +150,12 @@ io.on('connection', function(socket) {
     });
 });
 
-app.set('port', (process.env.PORT || 3001))
-app.listen(app.get('port'), function () {
-  console.log('Node app is running on port', app.get('port'))
-})
+// app.set('port', (process.env.PORT || 3001))
+// app.listen(app.get('port'), function () {
+//   console.log('Node app is running on port', app.get('port'))
+// })
 
-server.listen(process.env.PORT || 3000, function(){
+app.set('port', (process.env.PORT || 3001))
+server.listen(app.get('port'), function () {
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
