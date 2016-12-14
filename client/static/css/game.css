@@ -1,0 +1,239 @@
+html {
+  overflow:hidden;
+  zoom: reset;
+}
+img {
+  pointer-events: none;
+}
+div {
+  font-family: sans-serif;
+}
+div.screen {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  top: -10px;
+  left: -10px;
+  overflow:hidden;
+  border-color: #FFFFFF;
+}
+div#outOfArea {
+  width: 100vw;
+  height: 100vh;
+}
+div.avatar {
+  position: absolute;
+}
+div.foods {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  z-index: 1000;
+}
+div.popUpName {
+  position: fixed;
+  z-index: 9999;
+  background-color: white;
+  top: 40%;
+  left: 50%;
+  width: 400px;
+  height: 150px;
+  margin-top: -100px;
+  margin-left: -200px;
+  align-items: center;
+  text-align: center;
+  padding: 60px 0;
+  border: 3px solid #977797;
+  border-radius: 8px;
+}
+div.bgUpName {
+  position: fixed;
+  opacity:0.5;
+  filter:alpha(opacity=50); /* For IE8 and earlier */
+  background-color:#AAAAAA;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+}
+img.bgUpName {
+  position: fixed;
+  opacity:0.5;
+  filter:alpha(opacity=50); /* For IE8 and earlier */
+  width: 1;
+  height: 1080px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+button.button a {
+  color: white;
+}
+button.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bolder;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 8px;
+}
+button.play {
+  background-color: white;
+  color: black;
+  border: 2px solid #979797;
+}
+button.play:hover {
+  background-color: #979797;
+  color: white;
+}
+input[type=text], select {
+  padding: 8px 16px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+h5.status {
+  position: absolute;
+  color: #FFFFFF;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  left:20px;
+  bottom: 0;
+}
+h4.score {
+  position: absolute;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  left:75px;
+  bottom: 0;
+}
+a.ranking {
+  position: absolute;
+  display: block;
+  font-family: sans-serif;
+  top: 0;
+  right: 0;
+  z-index: 99;
+}
+div.chick {
+  width: 100px;
+  height: 100px;
+  border: 4px solid #000000;
+  border-radius: 10px;
+}
+div.rankingBoard {
+  z-index : 1000;
+  top: 100px;
+  right: 0;
+  height: 140px;
+  width: 90px;
+  position: absolute;
+  background-color:transparent;
+  border: 2px solid #73AD21;
+  /*#977797*/
+  opacity:0.4;filter:alpha(opacity=40);
+  overflow:hidden;
+  border-radius: 8px;
+}
+div.hOF {
+  z-index : 1000;
+  top: 0;
+  right: 0;
+  height: 90px;
+  width: 200px;
+  position: absolute;
+  background-color:transparent;
+  border: 2px solid #73AD21;
+  /*#977797*/
+  opacity:0.4;filter:alpha(opacity=40);
+  overflow:hidden;
+  border-radius: 8px;
+}
+div.miniMap {
+  z-index : 1000;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color:#FFFFFFF;
+  opacity:0.9;filter:alpha(opacity=20);
+  overflow:hidden;
+  border: 2px solid #CCCCCC;
+}
+div.miniAvatar {
+  width: 8px;
+  height: 8px;
+  border: 0.5px solid #AAAAAA;
+}
+div.miniFood {
+  width: 3px;
+  height: 3px;
+  border: 0.5px solid #AAAAAA;
+}
+div.target {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #000000;
+  bottom: 2%;
+  left: 200px;
+}
+div.logo {
+  position: fixed;
+  z-index: 9999;
+  top: 0%;
+  left: 50%;
+  margin-top: -125px;
+  margin-left: -265px;
+  padding: 60px 0;
+  width: 100%
+}
+div.law {
+  position: fixed;
+  top: 85%;
+  left: 50%;
+  width: 400px;
+  height: 150px;
+  margin-top: -100px;
+  margin-left: -200px;
+}
+div.see {
+  /*background-color : transparent;
+  background-color: rgba(255, 0, 0, 0.5)*/
+}
+a.name {
+  font-weight: bolder;
+  color: #FFFFFF;
+  font-size: 1.5em;
+  text-shadow: -2.5px 0 black, 0 2.5px black, 2.5px 0 black, 0 -2.5px black;
+}
+a.explanLaw {
+  color: white;
+  font-size:1.5em;
+  text-shadow: -1.5px 0 black, 0 1.5px black, 1.5px 0 black, 0 -1.5px black;
+}
+a {
+    color: #000000;
+}
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #BBBBBB;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #BBBBBB;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #BBBBBB;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #BBBBBB;
+}
