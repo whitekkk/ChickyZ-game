@@ -11,11 +11,6 @@ app.use(function (req, res, next) {
 })
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
-app.get('/', function (req, res) {
-  res.sendfile('./client/dist/index.html')
-})
-
 app.use(express.static('client/dist'))
 
 function makeId () {
