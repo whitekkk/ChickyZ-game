@@ -152,7 +152,7 @@ io.on('connection', function(socket) {
 
 // app.set('port', (process.env.PORT || 3001))
 
-app.set('port', (process.env.PORT || 3001))
+app.set('port', (process.env.PORT || 3000))
 server.listen(app.get('port'), function () {
-  console.log('Express server listening on port %d in %s mode', this.address().port, app.settings.env);
+  console.log('Express server listening on port %d in %s mode', this.address().port, app.settings.env)
 })
