@@ -3,15 +3,16 @@ var app = express()
 var bodyParser = require('body-parser')
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-var path = require('path');
 
-app.use(express.static('dist'))
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+  next()
+})
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/client/dist/index.html'));
-});
+app.use(express.static('./client/dist'))
 
 function makeId()
 {
