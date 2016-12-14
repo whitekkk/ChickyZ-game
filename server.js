@@ -1,8 +1,8 @@
 var express = require('express')
 var app = express()
 var bodyParser = require('body-parser')
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
+var server = require('http').Server(app)
+var io = require('socket.io')(server)
 
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')
@@ -151,6 +151,11 @@ io.on('connection', function(socket) {
     });
 });
 
-server.listen(process.env.PORT || 8081, function(){
+// server.listen(process.env.PORT || 8081, function(){
+//   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+// });
+
+app.set('port', (process.env.PORT || 3000))
+app.listen(app.get('port'), function () {
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-});
+})
