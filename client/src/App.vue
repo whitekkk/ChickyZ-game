@@ -22,8 +22,8 @@ import PopUp from './components/PopUp'
 import firebase from 'firebase'
 import Vue from 'vue'
 import VueSocketio from 'vue-socket.io'
-Vue.use(VueSocketio, 'http://192.168.0.133:3000/') // Automaticly socket connect from url string
-// Vue.use(VueSocketio, 'https://chichkyz.herokuapp.com/')
+// Vue.use(VueSocketio, 'http://192.168.0.133:3000/') // Automaticly socket connect from url string
+Vue.use(VueSocketio, 'https://chichkyz.herokuapp.com/')
 
 var config = {
   apiKey: 'AIzaSyCPjSZnxBY9KLykYc18iW4yNVTbQyaBPsU',
