@@ -11,31 +11,29 @@ app.use(function (req, res, next) {
 })
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(express.static('./client/dist'))
+app.use(express.static('/client/dist'))
 
-function makeId()
-{
-    var text = '';
-    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-    for( var i=0; i < 20; i++ )
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-    return text;
+function makeId () {
+  var text = ''
+  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  for (var i = 0; i < 20; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length))
+  }
+  return text
 }
 
-var avatars = [];
-var foods = [];
+var avatars = []
+var foods = []
 
-var d = new Date();
-var n = d.getTime();
+var d = new Date()
+var n = d.getTime()
 
 var newFood
-var length = 0
 var genfood = 0
 var color = ''
+var update
 
-io.on('connection', function(socket) {
+io.on('connection', function (socket) {
   setInterval(function () {
     for (var i = 0; i < avatars.length; i++) {
       if (avatars[i].eat === true) {
@@ -50,24 +48,24 @@ io.on('connection', function(socket) {
         })
         if (eatFood) {
           if (eatFood.color !== '' && avatars[i].score > 5) {
-            var update = {
+            update = {
               id: avatars[i].id,
               color: avatars[i].color = eatFood.color,
               score: avatars[i].score = Math.ceil(avatars[i].score / 2)
             }
-            io.emit('update',update)
+            io.emit('update', update)
             foods.splice(foods.findIndex(food => food.id === eatFood.id), 1)
-            io.emit('removeFoods',eatFood.id)
+            io.emit('removeFoods', eatFood.id)
           } else {
             avatars[i].score += 2
-            var update = {
+            update = {
               id: avatars[i].id,
               color: avatars[i].color,
               score: avatars[i].score
             }
-            io.emit('update',update)
+            io.emit('update', update)
             foods.splice(foods.findIndex(food => food.id === eatFood.id), 1)
-            io.emit('removeFoods',eatFood.id)
+            io.emit('removeFoods', eatFood.id)
           }
         }
       }
@@ -98,12 +96,12 @@ io.on('connection', function(socket) {
         y: Math.floor(Math.random() * 2778) + 50
       }
       foods.push(newFood)
-      io.emit('updateFoods',newFood)
+      io.emit('updateFoods', newFood)
     }
     length = foods.length
     for (var i = 0; i < avatars.length; i++) {
       if ((avatars[i].time + 120000) < n) {
-        io.emit('remove',avatars[i].id)
+        io.emit('remove', avatars[i].id)
         avatars.splice(i, 1)
       }
     }
